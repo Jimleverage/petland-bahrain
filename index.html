@@ -241,7 +241,7 @@
     }
 
     /* CURTAIN */
-    .curtain-section { position: relative; height: 180vh; }
+    .curtain-section { position: relative; height: 130vh; }
     .curtain-sticky {
       position: sticky; top: 0;
       height: 100dvh; overflow: hidden;
@@ -562,12 +562,12 @@
   gsap.to('#cLeft', {
     xPercent: -100,
     ease: 'power2.inOut',
-    scrollTrigger: { trigger: curtain, start: 'top top', end: '55% top', scrub: 0.7 }
+    scrollTrigger: { trigger: curtain, start: 'top top', end: '80% top', scrub: 0.7 }
   });
   gsap.to('#cRight', {
     xPercent: 100,
     ease: 'power2.inOut',
-    scrollTrigger: { trigger: curtain, start: 'top top', end: '55% top', scrub: 0.7 }
+    scrollTrigger: { trigger: curtain, start: 'top top', end: '80% top', scrub: 0.7 }
   });
 
   // Service cards entrance
