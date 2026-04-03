@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brand Card — PetLand Bahrain</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #111; color: #fff; padding: 40px; min-height: 100vh; }
+    .card { max-width: 860px; margin: 0 auto; background: #1a1a1a; border-radius: 16px; padding: 48px; border: 1px solid #2a2a2a; }
+    .brand-header { display: flex; align-items: center; gap: 20px; margin-bottom: 40px; }
+    .brand-name { font-size: 32px; font-weight: 700; color: #fe9361; }
+    .brand-tone { background: #fe9361; color: #181818; font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; }
+    h2 { font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #666; margin-bottom: 16px; margin-top: 36px; }
+    .color-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .swatch { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    .swatch-box { width: 80px; height: 80px; border-radius: 10px; border: 1px solid #333; }
+    .swatch-label { font-size: 11px; color: #888; }
+    .swatch-hex { font-size: 12px; color: #ccc; font-weight: 600; }
+    .font-preview-heading { font-size: 48px; font-weight: 700; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+    .font-preview-body { font-size: 16px; color: #aaa; line-height: 1.6; }
+    .font-meta { font-size: 11px; color: #555; margin-top: 4px; }
+    .headline-text { font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .tagline-text { font-size: 16px; color: #aaa; margin-bottom: 20px; }
+    .services-list { display: flex; flex-wrap: wrap; gap: 10px; }
+    .service-tag { background: #2a2a2a; border: 1px solid #333; color: #fe9361; font-size: 13px; padding: 6px 16px; border-radius: 20px; }
+    .cta-btn { display: inline-block; margin-top: 24px; padding: 14px 32px; background: #fe9361; color: #181818; font-weight: 700; font-size: 14px; border-radius: 8px; text-decoration: none; }
+    .meta-row { display: flex; gap: 24px; margin-top: 36px; padding-top: 24px; border-top: 1px solid #2a2a2a; }
+    .meta-item { display: flex; flex-direction: column; gap: 4px; }
+    .meta-label { font-size: 11px; color: #555; text-transform: uppercase; letter-spacing: 0.1em; }
+    .meta-value { font-size: 14px; color: #ccc; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="brand-header">
+      <div>
+        <div class="brand-name">PetLand Bahrain</div>
+        <div style="margin-top:6px; color:#666; font-size:13px;">petlandbh.com</div>
+      </div>
+      <div class="brand-tone">Playful</div>
+    </div>
+
+    <h2>Brand Colors</h2>
+    <div class="color-row">
+      <div class="swatch"><div class="swatch-box" style="background:#181818;"></div><div class="swatch-hex">#181818</div><div class="swatch-label">Primary</div></div>
+      <div class="swatch"><div class="swatch-box" style="background:#ffffff; border:1px solid #444;"></div><div class="swatch-hex">#ffffff</div><div class="swatch-label">Secondary</div></div>
+      <div class="swatch"><div class="swatch-box" style="background:#fe9361;"></div><div class="swatch-hex">#fe9361</div><div class="swatch-label">Accent</div></div>
+      <div class="swatch"><div class="swatch-box" style="background:#fef6ed;"></div><div class="swatch-hex">#fef6ed</div><div class="swatch-label">Background</div></div>
+    </div>
+
+    <h2>Typography</h2>
+    <div class="font-preview-heading">PetLand Bahrain</div>
+    <div class="font-meta">Heading — Avenir Heavy · 48px</div>
+    <div style="margin-top:16px;">
+      <div class="font-preview-body">Everything your pet needs, delivered to your door in Bahrain.</div>
+      <div class="font-meta">Body — Avenir Light · 16px</div>
+    </div>
+
+    <h2>Copy</h2>
+    <div class="headline-text">Pet Shop In Bahrain</div>
+    <div class="tagline-text">Everything Your Pet Needs, In One Place</div>
+    <div class="services-list">
+      <span class="service-tag">Dog Grooming</span>
+      <span class="service-tag">Cat Grooming</span>
+      <span class="service-tag">Pet Food</span>
+      <span class="service-tag">Pet Accessories</span>
+      <span class="service-tag">Delivery</span>
+    </div>
+    <a class="cta-btn" href="#">Shop Now</a>
+
+    <div class="meta-row">
+      <div class="meta-item"><span class="meta-label">Category</span><span class="meta-value">Pet Shop / Retail</span></div>
+      <div class="meta-item"><span class="meta-label">Market</span><span class="meta-value">Bahrain (Arabic + English)</span></div>
+      <div class="meta-item"><span class="meta-label">Tone</span><span class="meta-value">Playful, Warm, Friendly</span></div>
+    </div>
+  </div>
+</body>
+</html>

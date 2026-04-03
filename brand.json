@@ -1,0 +1,22 @@
+{
+  "name": "PetLand Bahrain",
+  "category": "other",
+  "tagline": "Everything Your Pet Needs, In One Place",
+  "headline": "Pet Shop In Bahrain",
+  "services": ["Dog Grooming", "Cat Grooming", "Pet Food", "Pet Accessories", "Delivery"],
+  "cta": { "text": "Shop Now", "url": "/" },
+  "contact": { "email": "", "phone": "", "address": "Bahrain" },
+  "logo_url": "https://static.wixstatic.com/media/ef86c9_cc9b750de2594cb3a1fc60b35dd4b3e0",
+  "colors": {
+    "primary": "#181818",
+    "secondary": "#ffffff",
+    "accent": "#fe9361",
+    "background": "#fef6ed",
+    "text": "#181818"
+  },
+  "fonts": {
+    "heading": "Avenir",
+    "body": "Avenir"
+  },
+  "tone": "playful"
+}
