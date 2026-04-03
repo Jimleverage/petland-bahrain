@@ -586,16 +586,21 @@
   animateBubbles();
 
   // Promise section — curtain lifts, then words fly up
-  var promise = document.getElementById('promise');
-  var promiseTl = gsap.timeline({
-    scrollTrigger: { trigger: promise, start: 'top 65%', toggleActions: 'play none none none' }
+  var promiseFired = false;
+  ScrollTrigger.create({
+    trigger: '#promise',
+    start: 'top 70%',
+    onEnter: function() {
+      if (promiseFired) return;
+      promiseFired = true;
+      gsap.timeline()
+        .to('.promise-curtain', { yPercent: -100, duration: 1.3, ease: 'power3.inOut' })
+        .to('.promise-tag', { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, '-=0.4')
+        .to('.promise-big .word', { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: 0.08 }, '-=0.3')
+        .to('.promise-body', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3')
+        .to('#promise a', { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, '-=0.3');
+    }
   });
-  promiseTl
-    .to('.promise-curtain', { yPercent: -100, duration: 1.3, ease: 'power3.inOut' })
-    .to('.promise-tag', { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, '-=0.3')
-    .to('.promise-big .word', { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: 0.08 }, '-=0.2')
-    .to('.promise-body', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3')
-    .to('#promise a', { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, '-=0.3');
 
   // Service cards entrance
   gsap.from('.service-card', {
@@ -603,14 +608,14 @@
     scrollTrigger: { trigger: '.services-grid', start: 'top 82%' }
   });
 
-  // CTA curtain — fires once on scroll, no dead space
+  // CTA curtain — opens on scroll down, closes on scroll up
   gsap.to('#ctaLeft', {
-    xPercent: -100, duration: 1, ease: 'power3.inOut',
-    scrollTrigger: { trigger: '#ctaCurtain', start: 'top 70%', once: true }
+    xPercent: -100, duration: 1.2, ease: 'power3.inOut',
+    scrollTrigger: { trigger: '#ctaCurtain', start: 'top 70%', toggleActions: 'play reverse play reverse' }
   });
   gsap.to('#ctaRight', {
-    xPercent: 100, duration: 1, ease: 'power3.inOut',
-    scrollTrigger: { trigger: '#ctaCurtain', start: 'top 70%', once: true }
+    xPercent: 100, duration: 1.2, ease: 'power3.inOut',
+    scrollTrigger: { trigger: '#ctaCurtain', start: 'top 70%', toggleActions: 'play reverse play reverse' }
   });
 
 })();
