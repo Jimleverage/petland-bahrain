@@ -240,73 +240,48 @@
       100% { transform: translateX(-50%); }
     }
 
-    /* ZOOM PARALLAX / PROMISE */
-    .zoom-section { position: relative; height: 280vh; }
-    .zoom-sticky {
-      position: sticky; top: 0;
-      height: 100vh; overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
-      background: radial-gradient(ellipse at 50% 40%, #2a1408 0%, #0d0806 70%);
-    }
-    .zoom-layer { position: absolute; will-change: transform; display: flex; align-items: center; justify-content: center; }
-    .layer-bg { inset: -20%; z-index: 1; }
-    .layer-bg-img {
-      width: 100%; height: 100%;
-      background: url('https://d1q70pf5vjeyhc.cloudfront.net/predictions/9f2e60464f0f491b81cff8297c0e449a/1.png') center/cover no-repeat;
-      opacity: 0.15;
-    }
-    .layer-mid { inset: 0; z-index: 2; }
-    .glow {
-      position: absolute; border-radius: 50%;
-    }
-    .glow-1 {
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(254,147,97,0.15) 0%, transparent 70%);
-      top: 10%; left: 5%;
-    }
-    .glow-2 {
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(254,147,97,0.1) 0%, transparent 70%);
-      bottom: 10%; right: 5%;
-    }
-    .layer-fg { inset: 0; z-index: 3; text-align: center; padding: 0 24px; }
-    .zoom-headline {
-      font-size: clamp(56px, 13vw, 160px);
-      font-weight: 700; letter-spacing: -0.04em; line-height: 0.9;
-      color: var(--white);
-    }
-    .zoom-headline span { color: var(--accent); }
-    .layer-card { inset: 0; z-index: 4; opacity: 0; }
-    .promise-card {
-      background: rgba(20,10,5,0.92);
-      border: 1px solid rgba(254,147,97,0.2);
-      border-radius: 24px; padding: 52px 48px;
-      text-align: center; max-width: 480px;
-      box-shadow: 0 40px 80px rgba(0,0,0,0.6);
-      backdrop-filter: blur(12px);
+    /* PROMISE SECTION */
+    .promise-section {
+      background: linear-gradient(135deg, #1c0f07, #0d0806);
+      padding: 100px 48px;
+      text-align: center;
+      overflow: hidden;
     }
     .promise-tag {
       display: inline-block;
       font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--accent); border: 1px solid rgba(254,147,97,0.22);
-      padding: 5px 14px; border-radius: 100px; margin-bottom: 20px;
+      color: var(--accent);
+      border: 1px solid rgba(254,147,97,0.22);
+      padding: 5px 14px; border-radius: 100px; margin-bottom: 24px;
+      opacity: 0; transform: translateY(20px);
     }
-    .promise-card h3 {
-      font-size: clamp(24px, 3vw, 36px); font-weight: 700;
-      letter-spacing: -0.02em; margin-bottom: 14px;
+    .promise-big {
+      font-size: clamp(48px, 8vw, 120px);
+      font-weight: 700; letter-spacing: -0.04em; line-height: 0.95;
+      margin-bottom: 40px;
+      overflow: hidden;
     }
-    .promise-card p {
-      font-size: 16px; color: rgba(255,255,255,0.5);
-      line-height: 1.65; margin-bottom: 28px;
+    .promise-big .word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(60px);
+      margin-right: 0.2em;
     }
-    .promise-card a {
-      display: inline-block; padding: 13px 32px;
+    .promise-big .word.accent { color: var(--accent); }
+    .promise-body {
+      font-size: 17px; color: rgba(255,255,255,0.5);
+      max-width: 44ch; margin: 0 auto 32px; line-height: 1.65;
+      opacity: 0; transform: translateY(20px);
+    }
+    .promise-section a {
+      display: inline-block; padding: 14px 36px;
       background: var(--accent); color: var(--primary);
       border-radius: 100px; text-decoration: none;
-      font-size: 14px; font-weight: 700;
+      font-size: 15px; font-weight: 700;
+      opacity: 0; transform: translateY(20px);
       transition: background 0.2s, transform 0.2s;
     }
-    .promise-card a:hover { background: var(--accent-dark); transform: translateY(-2px); }
+    .promise-section a:hover { background: var(--accent-dark); transform: translateY(-2px); }
 
     /* SERVICES */
     .services { padding: 120px 48px; background: var(--bg); color: var(--primary); }
@@ -416,26 +391,20 @@
   </div>
 </div>
 
-<!-- ZOOM PARALLAX / PROMISE -->
-<section class="zoom-section" id="zoomSection">
-  <div class="zoom-sticky">
-    <div class="zoom-layer layer-bg"><div class="layer-bg-img"></div></div>
-    <div class="zoom-layer layer-mid">
-      <div class="glow glow-1"></div>
-      <div class="glow glow-2"></div>
-    </div>
-    <div class="zoom-layer layer-fg">
-      <div class="zoom-headline">YOUR<br><span>PET</span><br>DESERVES</div>
-    </div>
-    <div class="zoom-layer layer-card">
-      <div class="promise-card">
-        <div class="promise-tag">Our Promise</div>
-        <h3>More than average care</h3>
-        <p>From expert grooming to premium nutrition — we treat every pet like family, every single visit.</p>
-        <a href="#">Meet Our Team</a>
-      </div>
-    </div>
+<!-- PROMISE -->
+<section class="promise-section" id="promise">
+  <div class="promise-tag">Our Promise</div>
+  <div class="promise-big">
+    <span class="word">Your</span>
+    <span class="word accent">Pet</span>
+    <span class="word">Deserves</span>
+    <br>
+    <span class="word accent">More</span>
+    <span class="word">Than</span>
+    <span class="word">Average</span>
   </div>
+  <p class="promise-body">From expert grooming sessions to premium nutrition — we treat every pet like family, every single visit.</p>
+  <a href="#">Meet Our Team</a>
 </section>
 
 <!-- SERVICES -->
@@ -574,22 +543,23 @@
   }
   animateBubbles();
 
-  // Zoom parallax
-  var zs = document.getElementById('zoomSection');
-  gsap.fromTo('.layer-bg', { scale: 1 }, { scale: 1.2, ease: 'none',
-    scrollTrigger: { trigger: zs, start: 'top top', end: 'bottom bottom', scrub: true }
+  // Promise section — words fly up on scroll
+  var promise = document.getElementById('promise');
+  gsap.to('.promise-tag', {
+    opacity: 1, y: 0, duration: 0.6, ease: 'power2.out',
+    scrollTrigger: { trigger: promise, start: 'top 80%' }
   });
-  gsap.fromTo('.layer-mid', { scale: 1 }, { scale: 1.8, ease: 'none',
-    scrollTrigger: { trigger: zs, start: 'top top', end: 'bottom bottom', scrub: true }
+  gsap.to('.promise-big .word', {
+    opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: 0.08,
+    scrollTrigger: { trigger: promise, start: 'top 75%' }
   });
-  gsap.fromTo('.layer-fg', { scale: 1, opacity: 1 }, { scale: 7, opacity: 0, ease: 'none',
-    scrollTrigger: { trigger: zs, start: 'top top', end: '50% top', scrub: true }
+  gsap.to('.promise-body', {
+    opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', delay: 0.4,
+    scrollTrigger: { trigger: promise, start: 'top 75%' }
   });
-  gsap.fromTo('.layer-card', { opacity: 0, scale: 0.88 }, { opacity: 1, scale: 1, ease: 'power2.out',
-    scrollTrigger: { trigger: zs, start: '42% top', end: '62% top', scrub: true }
-  });
-  gsap.fromTo('.layer-card', { opacity: 1 }, { opacity: 0,
-    scrollTrigger: { trigger: zs, start: '78% top', end: '92% top', scrub: true }
+  gsap.to('#promise a', {
+    opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', delay: 0.6,
+    scrollTrigger: { trigger: promise, start: 'top 75%' }
   });
 
   // Service cards entrance
