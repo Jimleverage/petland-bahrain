@@ -242,10 +242,17 @@
 
     /* PROMISE SECTION */
     .promise-section {
+      position: relative;
       background: linear-gradient(135deg, #1c0f07, #0d0806);
       padding: 100px 48px;
       text-align: center;
       overflow: hidden;
+    }
+    .promise-curtain {
+      position: absolute;
+      inset: 0;
+      background: #0d0806;
+      z-index: 2;
     }
     .promise-tag {
       display: inline-block;
@@ -419,17 +426,19 @@
 
 <!-- PROMISE -->
 <section class="promise-section" id="promise">
+  <div class="promise-curtain"></div>
   <div class="promise-tag">Our Promise</div>
   <div class="promise-big">
-    <span class="word">Your</span>
-    <span class="word accent">Pet</span>
-    <span class="word">Deserves</span>
+    <span class="word">They</span>
+    <span class="word accent">Give</span>
+    <span class="word">You</span>
+    <span class="word accent">Everything</span>
     <br>
-    <span class="word accent">More</span>
-    <span class="word">Than</span>
-    <span class="word">Average</span>
+    <span class="word">Give</span>
+    <span class="word">Them</span>
+    <span class="word accent">The Best</span>
   </div>
-  <p class="promise-body">From expert grooming sessions to premium nutrition — we treat every pet like family, every single visit.</p>
+  <p class="promise-body">Expert grooming, premium nutrition, unconditional care — because your pet doesn't settle, and neither do we.</p>
   <a href="#">Meet Our Team</a>
 </section>
 
@@ -575,24 +584,17 @@
   }
   animateBubbles();
 
-  // Promise section — words fly up on scroll
+  // Promise section — curtain lifts, then words fly up
   var promise = document.getElementById('promise');
-  gsap.to('.promise-tag', {
-    opacity: 1, y: 0, duration: 0.6, ease: 'power2.out',
-    scrollTrigger: { trigger: promise, start: 'top 80%' }
+  var promiseTl = gsap.timeline({
+    scrollTrigger: { trigger: promise, start: 'top 65%', toggleActions: 'play none none none' }
   });
-  gsap.to('.promise-big .word', {
-    opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: 0.08,
-    scrollTrigger: { trigger: promise, start: 'top 75%' }
-  });
-  gsap.to('.promise-body', {
-    opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', delay: 0.4,
-    scrollTrigger: { trigger: promise, start: 'top 75%' }
-  });
-  gsap.to('#promise a', {
-    opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', delay: 0.6,
-    scrollTrigger: { trigger: promise, start: 'top 75%' }
-  });
+  promiseTl
+    .to('.promise-curtain', { yPercent: -100, duration: 1.3, ease: 'power3.inOut' })
+    .to('.promise-tag', { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, '-=0.3')
+    .to('.promise-big .word', { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: 0.08 }, '-=0.2')
+    .to('.promise-body', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3')
+    .to('#promise a', { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, '-=0.3');
 
   // Service cards entrance
   gsap.from('.service-card', {
