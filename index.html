@@ -240,37 +240,57 @@
       100% { transform: translateX(-50%); }
     }
 
-    /* PROMISE SECTION */
-    .promise-section {
+    /* CURTAIN / PROMISE SECTION */
+    .curtain-section { position: relative; height: 200vh; }
+    .curtain-sticky {
+      position: sticky; top: 0;
+      height: 100vh; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .curtain-left, .curtain-right {
+      position: absolute; top: 0; bottom: 0;
+      width: 50%; background: var(--primary); z-index: 4;
+      display: flex; align-items: center;
+    }
+    .curtain-left { left: 0; justify-content: flex-end; padding-right: 52px; border-right: 1px solid rgba(254,147,97,0.12); }
+    .curtain-right { right: 0; justify-content: flex-start; padding-left: 52px; }
+    .curtain-left h2, .curtain-right h2 {
+      font-size: clamp(48px, 9vw, 108px);
+      font-weight: 700; letter-spacing: -0.04em; line-height: 0.92;
+      color: var(--white);
+    }
+    .curtain-left h2 span, .curtain-right h2 span { color: var(--accent); }
+    .curtain-content {
+      position: absolute; inset: 0; z-index: 3;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 40px;
       background: linear-gradient(135deg, #1c0f07, #0d0806);
-      padding: 100px 48px;
-      text-align: center;
     }
     .promise-tag {
       display: inline-block;
       font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
       color: var(--accent);
       border: 1px solid rgba(254,147,97,0.22);
-      padding: 5px 14px; border-radius: 100px;
-      margin-bottom: 24px;
+      padding: 5px 14px; border-radius: 100px; margin-bottom: 24px;
     }
-    .promise-section h3 {
+    .curtain-content h3 {
       font-size: clamp(28px, 4vw, 54px);
       font-weight: 700; letter-spacing: -0.025em;
-      margin-bottom: 16px;
+      margin-bottom: 16px; max-width: 560px;
     }
-    .promise-section p {
+    .curtain-content p {
       font-size: 17px; color: rgba(255,255,255,0.5);
-      max-width: 44ch; margin: 0 auto 32px; line-height: 1.65;
+      max-width: 44ch; line-height: 1.65; margin-bottom: 32px;
     }
-    .promise-section a {
+    .curtain-content a {
       display: inline-block; padding: 14px 36px;
       background: var(--accent); color: var(--primary);
       border-radius: 100px; text-decoration: none;
       font-size: 15px; font-weight: 700;
       transition: transform 0.2s, background 0.2s;
     }
-    .promise-section a:hover { transform: translateY(-2px); background: var(--accent-dark); }
+    .curtain-content a:hover { transform: translateY(-2px); background: var(--accent-dark); }
 
     /* SERVICES */
     .services { padding: 120px 48px; background: var(--bg); color: var(--primary); }
@@ -380,12 +400,18 @@
   </div>
 </div>
 
-<!-- PROMISE -->
-<section class="promise-section">
-  <div class="promise-tag">Our Promise</div>
-  <h3>Your pet deserves the very best</h3>
-  <p>From expert grooming sessions to premium nutrition — we treat every pet like family, every single visit.</p>
-  <a href="#">Meet Our Team</a>
+<!-- CURTAIN / PROMISE -->
+<section class="curtain-section" id="curtain">
+  <div class="curtain-sticky">
+    <div class="curtain-content">
+      <div class="promise-tag">Our Promise</div>
+      <h3>Your pet deserves the very best</h3>
+      <p>From expert grooming sessions to premium nutrition — we treat every pet like family, every single visit.</p>
+      <a href="#">Meet Our Team</a>
+    </div>
+    <div class="curtain-left" id="cLeft"><h2>YOUR<br><span>PET</span></h2></div>
+    <div class="curtain-right" id="cRight"><h2>DE<span>SERVES</span><br>MORE</h2></div>
+  </div>
 </section>
 
 <!-- SERVICES -->
@@ -524,10 +550,15 @@
   }
   animateBubbles();
 
-  // Promise section entrance
-  gsap.from('.promise-section h3, .promise-section p, .promise-section a', {
-    opacity: 0, y: 30, stagger: 0.12, duration: 0.7, ease: 'power2.out',
-    scrollTrigger: { trigger: '.promise-section', start: 'top 80%' }
+  // Curtain reveal — completes exactly as section ends, no dead space
+  var curtain = document.getElementById('curtain');
+  gsap.to('#cLeft', {
+    xPercent: -100, ease: 'power2.inOut',
+    scrollTrigger: { trigger: curtain, start: 'top top', end: 'bottom bottom', scrub: 0.8 }
+  });
+  gsap.to('#cRight', {
+    xPercent: 100, ease: 'power2.inOut',
+    scrollTrigger: { trigger: curtain, start: 'top top', end: 'bottom bottom', scrub: 0.8 }
   });
 
   // Service cards entrance
