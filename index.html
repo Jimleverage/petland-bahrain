@@ -135,13 +135,24 @@
     .hero-title {
       font-size: clamp(40px, 7vw, 82px);
       font-weight: 700;
-      line-height: 1.05;
+      line-height: 1.15;
       letter-spacing: -0.03em;
       color: var(--white);
       margin-bottom: 22px;
-      min-height: 1.15em;
+      overflow: hidden;
+    }
+    .hero-title .word-wrap {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: bottom;
+    }
+    .hero-title .word {
+      display: inline-block;
+      transform: translateY(110%);
       opacity: 0;
     }
+    .hero-title .word.accent { color: var(--accent); }
+    .hero-title .word-wrap:not(:last-child)::after { content: '\00a0'; }
     .hero-tagline {
       font-size: clamp(16px, 2vw, 20px);
       color: rgba(255,255,255,0.6);
@@ -391,7 +402,13 @@
 
   <div class="hero-content">
     <div class="hero-label" id="heroLabel">Premium Pet Care &nbsp;·&nbsp; Bahrain</div>
-    <h1 class="hero-title" id="heroTitle"></h1>
+    <h1 class="hero-title" id="heroTitle">
+      <span class="word-wrap"><span class="word">Grooming</span></span>
+      <span class="word-wrap"><span class="word">That</span></span>
+      <span class="word-wrap"><span class="word">Makes</span></span>
+      <span class="word-wrap"><span class="word">Tails</span></span>
+      <span class="word-wrap"><span class="word accent">Wag</span></span>
+    </h1>
     <p class="hero-tagline" id="heroTagline">
       Where every pet gets the royal treatment — grooming, food, accessories &amp; more, delivered to your door.
     </p>
@@ -466,12 +483,10 @@
   // Hero entrance timeline
   var tl = gsap.timeline({ delay: 0.4 });
   tl.to('#heroLabel', { opacity: 1, y: 0, duration: 0.65, ease: 'power2.out' })
-    .add(function () {
-      var el = document.getElementById('heroTitle');
-      el.style.opacity = '1';
-      scramble(el, 'Grooming That Makes Tails Wag', 1500);
-    }, '-=0.1')
-    .to('#heroTagline', { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '+=0.95')
+    .to('#heroTitle .word', {
+      y: 0, opacity: 1, duration: 0.7, ease: 'power3.out', stagger: 0.1
+    }, '-=0.2')
+    .to('#heroTagline', { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.2')
     .to('#heroActions', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3')
     .to('#scrollIndicator', { opacity: 1, duration: 0.6 }, '-=0.2');
 
