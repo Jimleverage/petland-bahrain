@@ -762,5 +762,64 @@
   }
 </script>
 
+<style>
+  * { cursor: none; }
+  #cursor-dot {
+    position: fixed; pointer-events: none; z-index: 99999;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: #fe9361;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+  }
+</style>
+
+<script>
+  var cursorDot = document.createElement('div');
+  cursorDot.id = 'cursor-dot';
+  document.body.appendChild(cursorDot);
+
+  var mouseX = 0, mouseY = 0;
+  var trailBubbles = [];
+
+  document.addEventListener('mousemove', function(e) {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursorDot.style.left = mouseX + 'px';
+    cursorDot.style.top  = mouseY + 'px';
+    spawnTrailBubble(mouseX, mouseY);
+  });
+
+  function spawnTrailBubble(x, y) {
+    var b = document.createElement('div');
+    var size = 10 + Math.random() * 22;
+    var opacity = 0.4 + Math.random() * 0.4;
+    b.style.cssText = [
+      'position:fixed',
+      'pointer-events:none',
+      'z-index:99998',
+      'border-radius:50%',
+      'border:2px solid rgba(254,147,97,' + opacity + ')',
+      'background:rgba(254,147,97,' + (opacity * 0.12) + ')',
+      'width:' + size + 'px',
+      'height:' + size + 'px',
+      'left:' + (x - size/2) + 'px',
+      'top:' + (y - size/2) + 'px',
+      'transition:transform 0.8s ease, opacity 0.8s ease',
+    ].join(';');
+    document.body.appendChild(b);
+
+    // Animate outward + fade
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        var drift = (Math.random() - 0.5) * 40;
+        b.style.transform = 'translate(' + drift + 'px, -' + (20 + Math.random() * 30) + 'px) scale(1.4)';
+        b.style.opacity = '0';
+      });
+    });
+
+    setTimeout(function() { b.remove(); }, 900);
+  }
+</script>
+
 </body>
 </html>
