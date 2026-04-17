@@ -487,14 +487,14 @@
   resize();
   window.addEventListener('resize', resize);
 
-  for (var i = 0; i < 30; i++) {
+  for (var i = 0; i < 40; i++) {
     bubbles.push({
       x: Math.random() * window.innerWidth,
-      y: window.innerHeight + Math.random() * 300,
-      r: 2 + Math.random() * 7,
-      speed: 0.25 + Math.random() * 0.55,
-      opacity: 0.08 + Math.random() * 0.28,
-      drift: (Math.random() - 0.5) * 0.35
+      y: window.innerHeight + Math.random() * 400,
+      r: 8 + Math.random() * 28,
+      speed: 0.4 + Math.random() * 0.8,
+      opacity: 0.25 + Math.random() * 0.45,
+      drift: (Math.random() - 0.5) * 0.5
     });
   }
 
@@ -503,18 +503,25 @@
     bubbles.forEach(function (b) {
       b.y -= b.speed;
       b.x += b.drift;
-      if (b.y < -20) {
-        b.y = canvas.height + 20;
+      if (b.y < -b.r * 2) {
+        b.y = canvas.height + b.r;
         b.x = Math.random() * canvas.width;
       }
+      // Main bubble ring
       ctx.beginPath();
       ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
       ctx.strokeStyle = 'rgba(254,147,97,' + b.opacity + ')';
-      ctx.lineWidth = 1;
+      ctx.lineWidth = 2;
       ctx.stroke();
+      // Inner fill (subtle)
       ctx.beginPath();
-      ctx.arc(b.x - b.r * 0.28, b.y - b.r * 0.28, b.r * 0.22, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(255,255,255,' + (b.opacity * 0.5) + ')';
+      ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(254,147,97,' + (b.opacity * 0.12) + ')';
+      ctx.fill();
+      // Highlight glint
+      ctx.beginPath();
+      ctx.arc(b.x - b.r * 0.3, b.y - b.r * 0.3, b.r * 0.25, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255,255,255,' + (b.opacity * 0.7) + ')';
       ctx.fill();
     });
     requestAnimationFrame(animateBubbles);
